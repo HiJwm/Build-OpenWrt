@@ -12,7 +12,7 @@ cat >$NETIP <<-EOF
 uci set network.lan.ipaddr='192.168.100.101'                      # IPv4 地址(openwrt后台地址)
 uci set network.lan.netmask='255.255.255.0'                   # IPv4 子网掩码
 uci set network.lan.gateway='192.168.100.100'                     # IPv4 网关
-uci set network.lan.broadcast='192.168.2.255'                 # IPv4 广播
+uci set network.lan.broadcast='192.168.100.255'                 # IPv4 广播
 uci set network.lan.dns='223.5.5.5 114.114.114.114'           # DNS(多个DNS要用空格分开)
 uci set network.lan.delegate='1'                              # 去掉LAN口使用内置的 IPv6 管理(若用IPV6请把'0'改'1')
 uci set dhcp.@dnsmasq[0].filter_aaaa='0'                      # 禁止解析 IPv6 DNS记录(若用IPV6请把'1'改'0')
@@ -45,6 +45,11 @@ sed -i "s/OpenWrt /Build date $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ_PA
 
 # 取消路由器每天跑分任务
 sed -i "/exit 0/i\sed -i '/coremark/d' /etc/crontabs/root" "$FIN_PATH"
+
+#删除danshui iStore应用，danshui的iStore目录名称为商店
+rm -rf ./feeds/danshui/luci-app-store
+#添加Kenzok8 istore应用
+svn co https://github.com//kenzok8/openwrt-packages/trunk/luci-app-store ./package/luci-app-store
 
 
 # K3专用，编译K3的时候只会出K3固件（其他机型也适宜,把phicomm_k3和对应路径替换一下，名字要绝对正确才行）
