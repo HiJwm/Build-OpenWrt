@@ -46,6 +46,13 @@ sed -i "s/OpenWrt /Build date $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ_PA
 # 取消路由器每天跑分任务
 sed -i "/exit 0/i\sed -i '/coremark/d' /etc/crontabs/root" "$FIN_PATH"
 
+# Change default BackGround img
+wget -O ./danshui/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg https://github.com/jiawm/My-OpenWrt/raw/main/BackGround/2.jpg
+
+#Change default icon img
+svn co https://github.com/xylz0928/luci-mod/trunk/feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons ./package/lucimod
+mv package/lucimod/* feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons/
+
 #删除danshui iStore应用，danshui的iStore目录名称为商店
 rm -rf ./feeds/danshui/luci-app-store
 #添加Kenzok8 istore应用
