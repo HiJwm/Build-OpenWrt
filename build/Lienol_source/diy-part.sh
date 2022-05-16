@@ -58,7 +58,7 @@ mv package/lucimod/* feeds/luci/modules/luci-base/htdocs/luci-static/resources/i
 #添加Kenzok8 istore应用
 #svn co https://github.com//kenzok8/openwrt-packages/trunk/luci-app-store ./package/luci-app-store
 #修改danshui iStore翻译 不替换直接修改翻译。
-sed -i "s/iStore/商店/g" ./feeds/danshui/luci-app-store/luasrc/controller/store.lua
+sed -i "s/iStore/商店/g" feeds/danshui/luci-app-store/luasrc/controller/store.lua
 
 
 # K3专用，编译K3的时候只会出K3固件（其他机型也适宜,把phicomm_k3和对应路径替换一下，名字要绝对正确才行）
